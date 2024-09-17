@@ -19,4 +19,11 @@ class Database
         $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
+    public function fetchAll()
+    {
+        $sql = "SELECT * FROM users";
+        $stmt = $this->connection->query($sql);
+        
+        return $stmt->fetchAll(PDO::FETCH_NUM);
+    }
 }
