@@ -1,3 +1,13 @@
+async function fetchData() {
+    return $.ajax({
+        type: "POST",
+        url: 'operations.php',
+        data: {
+            method: 'fetch',
+        },
+    });
+}
+
 function addUser() {
     $.ajax({
         type: "POST",
@@ -42,5 +52,22 @@ function deleteUser(id) {
                 }
             }).showToast();
         },
+    })
+}
+
+function mapTable(data) {
+    data.then(function(res) {
+
+        const result = JSON.parse(res)
+        result.map((user) => {
+            let button = `<button class='delete' data-id='${user[0]}'>Delete</button>`
+
+            user.push(button)
+        })
+
+        $("#usersTable").DataTable({
+            destroy: true,
+            "data": result,
+        })
     })
 }
