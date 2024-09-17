@@ -34,26 +34,24 @@
 
         <script>
             $(document).ready( function () {
-                const data = JSON.parse('<?php echo $users ?>')
-                data.map((user) => {
-                    let button = `<button class='delete' data-id='${user[0]}'>Delete</button>`
+                const data = fetchData()
+                mapTable(data)
 
-                    user.push(button)
+
+                $("body").on('click', '#create', function(e){
+                    e.preventDefault()
+                    addUser()
+
+                    let data = fetchData()
+                    mapTable(data)
                 })
 
-                $("#usersTable").DataTable({
-                    "data": data,
-                })
+                $("body").on('click', '.delete', function(e){
+                    e.preventDefault()
+                    deleteUser(e.target.getAttribute('data-id'))
 
-                $("#create").on('click', function(e){
-                    e.preventDefault();
-                    addUser();
-                })
-
-                $(".delete").on('click', function(e){
-                    e.preventDefault();
-
-                    deleteUser(e.target.getAttribute('data-id'));
+                    let data = fetchData()
+                    mapTable(data)
                 });
             })
         </script>
