@@ -1,10 +1,11 @@
 function addUser() {
     $.ajax({
         type: "POST",
-        url: 'create.php',
+        url: 'operations.php',
         data: {
             name: $("#name").val(),
             email: $("#email").val(),
+            method: 'create',
         },
         success: function(res) {
             res = JSON.parse(res);
@@ -24,9 +25,10 @@ function addUser() {
 function deleteUser(id) {
     $.ajax({
         type: "POST",
-        url: 'delete.php',
+        url: 'operations.php',
         data: {
-            id: id
+            id: id,
+            method: 'delete',
         },
         success: function(res) {
             res = JSON.parse(res);
