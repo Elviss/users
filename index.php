@@ -53,7 +53,9 @@ $users = json_encode($database->fetchAll());
             $(document).ready( function () {
                 const data = JSON.parse('<?php echo $users ?>')
                 data.map((user) => {
-                    user.push('delete')
+                    let button = `<button class='delete' data-id='${user[0]}'>Delete</button>`
+
+                    user.push(button)
                 })
 
                 $("#usersTable").DataTable({
@@ -63,6 +65,12 @@ $users = json_encode($database->fetchAll());
                 $("#create").on('click', function(e){
                     e.preventDefault();
                     addUser();
+                })
+
+                $(".delete").on('click', function(e){
+                    e.preventDefault();
+
+                    deleteUser(e.target.getAttribute('data-id'));
                 });
             })
         </script>
