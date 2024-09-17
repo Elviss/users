@@ -40,4 +40,17 @@ class Database
 
         return json_encode(['status'=> '200','msg' => "Novo usuário inserido com sucesso!"]);
     }
+
+    public function delete($id)
+    {
+        $sql = "DELETE FROM users WHERE id = :id";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindParam(':id', $id);
+
+        if (!$stmt->execute()) {
+            return json_encode(['status'=> '400', 'msg'=> "Error: Ocorreu um erro ao executar a query!"]);
+        }
+
+        return json_encode(['status'=> '200','msg' => "Usuário removido com sucesso!"]);
+    }
 }
