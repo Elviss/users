@@ -23,7 +23,21 @@ class Database
     {
         $sql = "SELECT * FROM users";
         $stmt = $this->connection->query($sql);
-        
+
         return $stmt->fetchAll(PDO::FETCH_NUM);
+    }
+
+    public function create($name, $email)
+    {
+        $sql = "INSERT INTO users (nome, email) VALUES (:name, :email)";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':email', $email);
+
+        if (!$stmt->execute()) {
+            return "Error: Ocorreu um erro ao executar a query!";
+        }
+
+        return "Novo usuário inserido com sucesso!";
     }
 }
