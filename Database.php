@@ -35,9 +35,9 @@ class Database
         $stmt->bindParam(':email', $email);
 
         if (!$stmt->execute()) {
-            return "Error: Ocorreu um erro ao executar a query!";
+            return json_encode(['status'=> '400', 'msg'=> "Error: Ocorreu um erro ao executar a query!"]);
         }
 
-        return "Novo usuário inserido com sucesso!";
+        return json_encode(['status'=> '200','msg' => "Novo usuário inserido com sucesso!"]);
     }
 }
