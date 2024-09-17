@@ -10,3 +10,5 @@ How to Use:
 - Inside the container bash `mysql -uuser -puser`
 - Choose the database `use users-management`
 - Execute the content of `db.sql` file in the mysql to create the table
+- Run the server `php -S 127.0.0.1:8000`
+- Access it on the address `http://127.0.0.1:8000`
