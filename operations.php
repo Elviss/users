@@ -12,12 +12,14 @@ $database = new Database();
 
 $database->connect($_ENV['DB_USER'], $_ENV['DB_PASSWORD']);
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['method'] === 'fetch') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['method'] === 'fetch')
+{
     echo json_encode($database->fetchAll());
 }
 
 // create
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['method'] === 'create') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['method'] === 'create')
+{
     $name = $_POST['name'];
     $email = $_POST['email'];
 
@@ -26,7 +28,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['method'] === 'create') {
 }
 
 // delete
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['method'] === 'delete') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['method'] === 'delete')
+{
     $id = $_POST['id'];
 
     $result = $database->delete($id);
